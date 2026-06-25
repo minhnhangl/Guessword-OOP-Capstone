@@ -10,6 +10,7 @@ private:
     string hiddenWord;
 public:
     Word();
+    void setAnswer(string answer);
     Word(string answer);
     void hideCharacters(int count);
     bool checkAnswer(string userAnswer);

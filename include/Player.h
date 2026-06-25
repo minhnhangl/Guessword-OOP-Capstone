@@ -16,6 +16,8 @@ public:
 
     Player(string name);
 
+    void setName(string name);
+
     string getName() const;
 
     Score getScore() const;

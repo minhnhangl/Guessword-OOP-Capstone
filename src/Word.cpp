@@ -4,6 +4,11 @@ Word::Word()
     answer = "";
     hiddenWord = "";
 }
+void Word::setAnswer(string answer)
+{
+    this->answer = answer;
+    hiddenWord = answer;
+}
 Word::Word(string answer)
 {
     this->answer = answer;

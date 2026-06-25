@@ -1,4 +1,4 @@
-#include "../Score.h"
+#include "Score.h"
 
 Score::Score(int _points)
 {

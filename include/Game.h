@@ -17,6 +17,8 @@ private:
 
     Difficulty* difficulty;
 
+    int currentIndex;
+
 public:
     Game();
 
@@ -29,4 +31,5 @@ public:
     void play();
 
     void displayResult();
+
 };
