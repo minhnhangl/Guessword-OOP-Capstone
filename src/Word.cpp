@@ -1,15 +1,10 @@
 #include "Word.h"
-Word::Word()
+Word::Word() // khởi tạo một word rỗng
 {
     answer = "";
     hiddenWord = "";
 }
-void Word::setAnswer(string answer)
-{
-    this->answer = answer;
-    hiddenWord = answer;
-}
-Word::Word(string answer)
+Word::Word(string answer)// Khởi tạo và gán luôn.
 {
     this->answer = answer;
     this->hiddenWord = answer; 

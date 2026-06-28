@@ -1,27 +1,51 @@
-# 🎮 GuessWord - Capstone OOP
+# 🎮 GuessWord - Capstone Project (Object-Oriented Programming)
 
 ## Giới thiệu
 
-GuessWord là một trò chơi đoán từ được xây dựng bằng ngôn ngữ **C++** nhằm áp dụng các kiến thức của môn **Lập trình hướng đối tượng (Object-Oriented Programming - OOP)**.
+**GuessWord** là trò chơi đoán từ được xây dựng bằng ngôn ngữ **C++** nhằm áp dụng các kiến thức của môn **Lập trình hướng đối tượng (OOP)**.
 
-Người chơi sẽ lựa chọn độ khó, đoán các từ đã bị ẩn một số ký tự và tích lũy điểm số sau mỗi câu trả lời đúng.
+Trong trò chơi, người chơi sẽ lựa chọn độ khó, nhập tên, đoán các từ đã bị ẩn một số ký tự và nhận điểm khi trả lời đúng. Ngoài ra, chương trình còn có cơ chế **Bonus**: nếu trả lời đúng **2 câu liên tiếp**, người chơi sẽ được cộng thêm **1 điểm thưởng**.
+
+---
+
+# Thành viên nhóm
+
+| Thành viên   | Công việc                             |
+| ------------ | ------------------------------------- |
+| Trưởng nhóm  | Tích hợp project, Game Module, GitHub |
+| Khang Nguyễn | Word Module                           |
+| Tiến Phan    | Difficulty Module                     |
+| Lịch Trần    | Player & Score Module                 |
+| Quốc Trung   | Main.cpp & Test game                  |
+
+
+---
+
+# Mục tiêu của project
+
+* Áp dụng các kiến thức lập trình hướng đối tượng.
+* Thực hành xây dựng project nhiều file.
+* Làm quen với Git và GitHub.
+* Phát triển một trò chơi console đơn giản.
 
 ---
 
 # Chức năng
 
-- Đọc dữ liệu từ file `words.txt`
-- Chọn độ khó:
-  - Easy
-  - Medium
-  - Hard
-- Ẩn số lượng ký tự theo từng độ khó
-- Người chơi nhập đáp án
-- Kiểm tra đúng/sai
-- Cộng điểm khi trả lời đúng
-- Hiển thị kết quả cuối game
-- Có thể bỏ qua từ (Skip)
-- Có thể thoát game (Quit)
+* Đọc dữ liệu từ file `words.txt`
+* Chọn mức độ khó:
+
+  * Easy
+  * Medium
+  * Hard
+* Ẩn ký tự theo từng mức độ khó
+* Nhập tên người chơi
+* Kiểm tra đáp án
+* Cộng điểm khi trả lời đúng
+* Bonus 1 điểm nếu trả lời đúng 2 câu liên tiếp
+* Có thể Skip từ hiện tại
+* Có thể Quit game bất kỳ lúc nào
+* Hiển thị kết quả cuối game
 
 ---
 
@@ -55,31 +79,32 @@ Project.Guessword
 
 ---
 
-# Mô tả các lớp
+# Các lớp trong project
 
 ## Game
 
-Là lớp điều khiển toàn bộ chương trình.
+Lớp điều khiển toàn bộ trò chơi.
 
 Chức năng:
 
-- Đọc danh sách từ
-- Chọn độ khó
-- Điều khiển quá trình chơi
-- Hiển thị kết quả
+* Đọc file từ vựng
+* Chọn độ khó
+* Điều khiển vòng lặp game
+* Quản lý người chơi
+* Hiển thị kết quả cuối game
 
 ---
 
 ## Word
 
-Quản lý một từ trong game.
+Quản lý một từ trong trò chơi.
 
 Bao gồm:
 
-- Đáp án
-- Từ đã bị ẩn
-- Kiểm tra đáp án
-- Ẩn ký tự
+* Đáp án
+* Từ đã bị ẩn
+* Kiểm tra đáp án
+* Ẩn ký tự theo độ khó
 
 ---
 
@@ -89,8 +114,8 @@ Quản lý thông tin người chơi.
 
 Bao gồm:
 
-- Tên người chơi
-- Điểm số
+* Tên
+* Điểm số
 
 ---
 
@@ -98,23 +123,24 @@ Bao gồm:
 
 Quản lý điểm.
 
-Chức năng:
+Bao gồm:
 
-- Cộng điểm
-- Lấy điểm
-- Nạp chồng toán tử
+* Cộng điểm
+* Lấy điểm
+* Nạp chồng toán tử
+* Friend Function
 
 ---
 
 ## Difficulty
 
-Lớp trừu tượng dùng để xác định số lượng ký tự cần ẩn.
+Lớp trừu tượng xác định số lượng ký tự cần ẩn.
 
 Các lớp kế thừa:
 
-- EasyDifficulty
-- MediumDifficulty
-- HardDifficulty
+* EasyDifficulty
+* MediumDifficulty
+* HardDifficulty
 
 ---
 
@@ -122,13 +148,15 @@ Các lớp kế thừa:
 
 ## 1. Encapsulation (Đóng gói)
 
-Các thuộc tính được khai báo `private` và truy cập thông qua các hàm `public`.
+Các thuộc tính đều được khai báo `private`.
 
 Ví dụ:
 
-- Player
-- Word
-- Score
+* Word
+* Player
+* Score
+
+Việc truy cập dữ liệu được thực hiện thông qua Getter và Setter.
 
 ---
 
@@ -155,17 +183,17 @@ Sử dụng con trỏ:
 Difficulty* difficulty;
 ```
 
-Con trỏ sẽ trỏ đến:
+Con trỏ này sẽ trỏ đến:
 
-- EasyDifficulty
-- MediumDifficulty
-- HardDifficulty
+* EasyDifficulty
+* MediumDifficulty
+* HardDifficulty
 
 tùy theo lựa chọn của người chơi.
 
 ---
 
-## 4. Composition (Quan hệ chứa)
+## 4. Composition (HAS-A)
 
 ```
 Game
@@ -179,9 +207,41 @@ Player
  └── Score
 ```
 
+Game chứa Player và danh sách Word.
+
+Player chứa Score.
+
 ---
 
-## 5. STL
+## 5. Operator Overloading
+
+Project sử dụng nạp chồng toán tử:
+
+```cpp
+Score operator+(const Score&);
+```
+
+Được sử dụng để tính điểm thưởng (Bonus) khi người chơi trả lời đúng hai câu liên tiếp.
+
+---
+
+## 6. Friend Function
+
+Project sử dụng:
+
+```cpp
+friend ostream& operator<<(ostream&, const Score&);
+```
+
+Để hiển thị trực tiếp đối tượng `Score` bằng:
+
+```cpp
+cout << player.getScore();
+```
+
+---
+
+## 7. STL
 
 Project sử dụng:
 
@@ -193,7 +253,7 @@ vector<Word>
 
 ---
 
-## 6. File I/O
+## 8. File I/O
 
 Sử dụng:
 
@@ -201,7 +261,7 @@ Sử dụng:
 ifstream
 ```
 
-để đọc dữ liệu từ file:
+để đọc dữ liệu từ:
 
 ```
 data/words.txt
@@ -209,14 +269,14 @@ data/words.txt
 
 ---
 
-# Luồng hoạt động của chương trình
+# Luồng hoạt động
 
 ```
 main()
 
 ↓
 
-Tạo Game
+Tạo đối tượng Game
 
 ↓
 
@@ -244,11 +304,15 @@ Người chơi đoán
 
 ↓
 
+Đúng 2 câu liên tiếp → Bonus 1 điểm
+
+↓
+
 Sai → nhập lại
 
 ↓
 
-Hết từ hoặc Quit
+Skip / Quit (nếu người chơi lựa chọn)
 
 ↓
 
@@ -265,7 +329,9 @@ Biên dịch:
 g++ main.cpp src/Game.cpp src/Word.cpp src/Player.cpp src/Score.cpp -Iinclude -o GuessWord
 ```
 
-Chạy trên Windows:
+Chạy:
+
+Windows:
 
 ```powershell
 .\GuessWord.exe
@@ -287,40 +353,54 @@ Your answer:
 hello
 
 Correct!
+
+Word: tea____
+
+Your answer:
+teacher
+
+Correct!
+
+***** BONUS *****
+2 correct answers in a row!
+
+Current Score: 3 points
 ```
 
 ---
 
 # Hướng phát triển
 
-Trong tương lai có thể bổ sung:
+Trong tương lai project có thể bổ sung:
 
-- Chọn từ ngẫu nhiên
-- Ẩn ký tự ngẫu nhiên
-- Lưu điểm cao (High Score)
-- Đếm thời gian
-- Giao diện đẹp hơn
-- Chơi nhiều vòng
+* Chọn từ ngẫu nhiên
+* Ẩn ký tự ngẫu nhiên
+* Lưu bảng xếp hạng
+* Chơi nhiều người
+* Đếm thời gian
+* Giao diện đồ họa
 
 ---
 
 # Kết luận
 
-Thông qua project này, nhóm đã vận dụng các kiến thức về Lập trình hướng đối tượng như đóng gói, kế thừa, đa hình, quan hệ chứa, STL và xử lý file để xây dựng một trò chơi đoán từ đơn giản. Đây là cơ hội giúp nhóm rèn luyện kỹ năng lập trình, làm việc nhóm và sử dụng Git/GitHub trong quá trình phát triển phần mềm.
+Thông qua project này, nhóm đã áp dụng các kiến thức về lập trình hướng đối tượng như đóng gói, kế thừa, đa hình, quan hệ chứa, nạp chồng toán tử, friend function, STL và xử lý file để xây dựng một trò chơi đoán từ đơn giản.
+
+Ngoài kiến thức lập trình, nhóm còn rèn luyện kỹ năng làm việc nhóm, quản lý mã nguồn bằng Git/GitHub và tổ chức một dự án theo cấu trúc chuẩn của C++.
 
 ---
 
-## Công nghệ sử dụng
+# Công nghệ sử dụng
 
-- C++
-- Visual Studio Code
-- Git
-- GitHub
-- STL
-- File I/O
+* C++
+* Visual Studio Code
+* Git
+* GitHub
+* STL
+* File I/O
 
 ---
 
-## Giấy phép
+# License
 
 Project được thực hiện nhằm mục đích học tập trong môn **Lập trình hướng đối tượng (OOP)**.

@@ -102,7 +102,7 @@ void Game::play()
 
     player.setName(playerName);
     currentIndex = 0;
-
+    int streak = 0;
     while (currentIndex < words.size())
     {
         Word& currentWord = words[currentIndex];
@@ -138,13 +138,32 @@ void Game::play()
             {
                 cout << "Correct!" << endl;
 
+                streak++;
+
                 player.addScore(1);
+
+                if (streak == 2)
+                {
+                    cout << "\n***** BONUS *****" << endl;
+                    cout << "2 correct answers in a row!" << endl;
+
+                    Score bonus(1);
+                    Score total = player.getScore() + bonus;
+
+                    player.addScore(1);
+
+                    cout << "Current Score: " << total << endl;
+
+                    streak = 0;
+                }
 
                 break;
             }
             else
             {
                 cout << "Wrong! Try again." << endl;
+
+                streak = 0;
             }
         }
 

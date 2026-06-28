@@ -9,7 +9,7 @@ class Player
 {
 private:
     string name;
-    Score score;
+    Score score;// has a
 
 public:
     Player();
