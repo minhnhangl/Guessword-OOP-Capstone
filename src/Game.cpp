@@ -6,6 +6,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <algorithm>
+#include <random>
 #include <ctime>
 #include <cstdlib>
 
@@ -13,9 +15,7 @@ using namespace std;
 Game::Game()
 {
     difficulty = nullptr;
-    currentIndex = -1;
-
-    srand(time(NULL));
+    currentIndex = 0;
 }
 Game::~Game()
 {
@@ -40,6 +40,7 @@ void Game::loadWords(string filename)
     {
         Word w(word);
         words.push_back(w);
+        shuffle(words.begin(), words.end(), default_random_engine(time(0)));
     }
 
     fin.close();
@@ -50,42 +51,41 @@ void Game::chooseDifficulty()
 {
     int choice;
 
-    cout << "==============================" << endl;
-    cout << "      GUESS WORD GAME" << endl;
-    cout << "==============================" << endl;
-
-    cout << "1. Easy" << endl;
-    cout << "2. Medium" << endl;
-    cout << "3. Hard" << endl;
-
-    cout << "Choose difficulty: ";
-    cin >> choice;
-
-    if (difficulty != nullptr)
+    while (true)
     {
-        delete difficulty;
-    }
+        cout << "==============================" << endl;
+        cout << "       GUESS WORD GAME" << endl;
+        cout << "==============================" << endl;
 
-    switch (choice)
-    {
-    case 1:
-        difficulty = new EasyDifficulty();
-        break;
+        cout << "1. Easy" << endl;
+        cout << "2. Medium" << endl;
+        cout << "3. Hard" << endl;
 
-    case 2:
-        difficulty = new MediumDifficulty();
-        break;
+        cout << "Choose difficulty: ";
+        cin >> choice;
 
-    case 3:
-        difficulty = new HardDifficulty();
-        break;
-
-    default:
-        cout << "Invalid choice!" << endl;
-        difficulty = new EasyDifficulty();
-        break;
+        if (choice == 1)
+        {
+            difficulty = new EasyDifficulty();
+            break;
+        }
+        else if (choice == 2)
+        {
+            difficulty = new MediumDifficulty();
+            break;
+        }
+        else if (choice == 3)
+        {
+            difficulty = new HardDifficulty();
+            break;
+        }
+        else
+        {
+            cout << "\nInvalid choice! Please try again.\n" << endl;
+        }
     }
 }
+
 void Game::play()
 {
     if (words.empty())
