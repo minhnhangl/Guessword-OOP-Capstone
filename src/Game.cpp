@@ -95,7 +95,12 @@ void Game::play()
     }
 
     chooseDifficulty();
+    string playerName;
 
+    cout << "Enter your name: ";
+    cin >> playerName;
+
+    player.setName(playerName);
     currentIndex = 0;
 
     while (currentIndex < words.size())
@@ -113,8 +118,21 @@ void Game::play()
 
         while (true)
         {
-            cout << "Your answer: ";
+            cout << "Your answer (or type 'quit' to exit, 'skip' to skip): ";
             cin >> answer;
+
+            if (answer == "quit")
+            {
+             displayResult();
+             return;          // Kết thúc game
+            }
+
+            if (answer == "skip")
+            {
+            cout << "Correct answer: "
+             << currentWord.getAnswer() << endl;
+            break;           // Sang từ tiếp theo
+            }
 
             if (currentWord.checkAnswer(answer))
             {
